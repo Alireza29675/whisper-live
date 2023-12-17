@@ -1,10 +1,11 @@
 import axios from 'axios'
 import {RecordRTCPromisesHandler} from 'recordrtc'
-import {OPENAI_API_TOKEN, WHISPER_API_ENDPOINT} from './constants'
+import {WHISPER_API_ENDPOINT} from './constants'
 
 const AUDIO_MIME_TYPE = 'audio/webm;codecs=opus'
 
-export type TranscriberConfig = {
+export type WhisperLiveConfig = {
+	openAiKey: string
 	timeSlice?: number
 	model?: string
 	prompt?: string
@@ -12,7 +13,8 @@ export type TranscriberConfig = {
 	onTranscript?: (transcription: string) => void
 }
 
-export class Transcriber {
+export class WhisperLive {
+	openAiKey: string
 	timeSlice: number
 	model: string
 	prompt: string
@@ -26,7 +28,8 @@ export class Transcriber {
 	transcribing = false
 	transcript = ''
 
-	constructor(config: TranscriberConfig) {
+	constructor(config: WhisperLiveConfig) {
+		this.openAiKey = config.openAiKey
 		this.timeSlice = config.timeSlice ?? 2000
 		this.model = config.model ?? 'whisper-1'
 		this.prompt = config.prompt ?? ''
@@ -119,7 +122,7 @@ export class Transcriber {
 		const response = await axios.post(WHISPER_API_ENDPOINT, body, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
-				Authorization: `Bearer ${OPENAI_API_TOKEN}`,
+				Authorization: `Bearer ${this.openAiKey}`,
 			},
 		})
 		return response.data.text

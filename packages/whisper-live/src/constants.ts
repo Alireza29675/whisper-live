@@ -1,2 +1,1 @@
-export const OPENAI_API_TOKEN = ''
-export const WHISPER_API_ENDPOINT = ''
+export const WHISPER_API_ENDPOINT = 'https://api.openai.com/v1/audio/transcriptions'
