@@ -1,0 +1,24 @@
+name: Create diagram
+on:
+  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+jobs:
+  get_data:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          token: ${{ secrets.GH_PAT }}
+      - name: Update diagram
+        uses: githubocto/repo-visualizer@main
+        with:
+          output_file: "VISUALIZED_CODEBASE.svg"
+          commit_message: "docs: update codebase diagram"
+          root_path: "packages/"
+          excluded_globs: "**/*.json"
