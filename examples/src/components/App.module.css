@@ -1,0 +1,13 @@
+.App {
+  position: absolute;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+
+  .Content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+}

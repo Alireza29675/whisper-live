@@ -1,0 +1,29 @@
+{
+  "name": "whisper-live",
+  "version": "0.0.0",
+  "description": "TypeScript-based library for real-time audio transcription, integrating OpenAI's Whisper model for accurate speech-to-text conversion.",
+  "source": "src/index.ts",
+  "main": "dist/umd/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup --config node:@whisper-live/rollup-config --watch",
+    "build": "rollup --config node:@whisper-live/rollup-config --environment NODE_ENV:production",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@whisper-live/eslint-config": "workspace:*",
+    "@whisper-live/rollup-config": "workspace:*",
+    "@whisper-live/tsconfig": "workspace:*",
+    "@types/node": "^18.7.16",
+    "typescript": "^4.9.4"
+  },
+  "rollup": {
+    "name": "WhisperLive"
+  }
+}

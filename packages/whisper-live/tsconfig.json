@@ -1,0 +1,9 @@
+{
+  "extends": "@whisper-live/tsconfig/base.json",
+  "display": "whisper-live",
+  "compilerOptions": {
+    "declaration": true,
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
