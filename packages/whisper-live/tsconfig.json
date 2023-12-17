@@ -3,6 +3,7 @@
   "display": "whisper-live",
   "compilerOptions": {
     "declaration": true,
+    "lib": ["dom"],
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]
