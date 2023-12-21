@@ -32,4 +32,5 @@ jobs:
       with:
         branch: gh-pages
         folder: examples/dist
+        token: ${{ secrets.GH_PAT }}
 
