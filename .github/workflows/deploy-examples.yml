@@ -24,8 +24,8 @@ jobs:
     - name: Install Dependencies
       run: pnpm install
 
-    - name: Build Examples
-      run: pnpm --filter examples run build
+    - name: Build Project
+      run: pnpm build
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.4
