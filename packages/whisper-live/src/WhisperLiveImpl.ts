@@ -92,17 +92,17 @@ export class WhisperLiveImpl {
 		}
 		const blob = !chunk
 			? await this.recorder.getBlob()
-			: new Blob(this.chunks, {
-					type: AUDIO_MIME_TYPE,
-			  })
-		const file = new File([blob], 'speech.webm', {
-			type: AUDIO_MIME_TYPE,
-		})
+			: new Blob(this.chunks, { type: AUDIO_MIME_TYPE })
+		const file = new File([blob], 'speech.webm', { type: AUDIO_MIME_TYPE })
 		const text = await this.sendToWhisper(file)
 		this.transcript = text
 		this.transcribing = false
-		this.events.emit('transcipt', text)
-    }
+		this.events.emit(EVENTS.Transcribe, text)
+	}
+
+	onTranscript = (cb: (text: string) => void) => {
+		return this.events.on(EVENTS.Transcribe, cb)
+	}
 
 	sendToWhisper = async (file: File): Promise<string> => {
 		const body = new FormData()
@@ -118,9 +118,5 @@ export class WhisperLiveImpl {
 			},
 		})
 		return response.data.text
-	}
-
-	onTranscript(cb: (text: string) => void) {
-			return this.events.on(EVENTS.Transcribe, cb)
 	}
 }
