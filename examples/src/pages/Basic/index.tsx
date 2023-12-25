@@ -11,33 +11,28 @@ export const metadata = {
 // ----
 
 // 0️⃣ Install and import the package
-import WhisperLive from "whisper-live"
+import WhisperLive, { Language } from "whisper-live"
 
 export default function Basic() {
   const { apiKey } = useConfig().config
   const [recording, setRecording] = useState(false);
   const [transcription, setTranscription] = useState('');
 
-  const {start, stop} = useMemo(() => {
+  const whisper = useMemo(() => {
     // 1️⃣ Instantiate the WhisperLive class
-    const whisper = new WhisperLive({ openAiKey: apiKey })
+    const whisper = new WhisperLive({ openAiKey: apiKey, language: Language.Persian })
   
     // 2️⃣ Catch the transcriptions
-    whisper.onTranscript = (text) => {
-      setTranscription(text)
-    }
+    whisper.onTranscript((text) => setTranscription(text));
 
     // 3️⃣ Use startRecording and stopRecording to control over transcription
-    return {
-      start: whisper.startRecording,
-      stop: whisper.stopRecording,
-    }
+    return whisper
   }, [apiKey]);
 
   const toggle = useCallback(() => {
-    !recording ? start() : stop();
+    !recording ? whisper.start() : whisper.stop();
     setRecording(!recording);
-  }, [start, stop, recording]);
+  }, [whisper, recording]);
 
   return (
     <div>

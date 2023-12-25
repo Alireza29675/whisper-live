@@ -1,6 +1,6 @@
 {
   "name": "whisper-live",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript-based library for real-time audio transcription, integrating OpenAI's Whisper model for accurate speech-to-text conversion.",
   "source": "src/index.ts",
   "main": "dist/umd/index.js",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "events": "^3.3.0",
     "recordrtc": "^5.6.2"
   }
 }
