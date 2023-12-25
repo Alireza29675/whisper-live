@@ -1,5 +1,11 @@
 # whisper-live
 
+## 0.2.1
+
+### Patch Changes
+
+- bug fix
+
 ## 0.2.0
 
 ### Minor Changes

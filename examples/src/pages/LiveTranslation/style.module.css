@@ -1,0 +1,27 @@
+.transcription {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions > button {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem;
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(145deg, #2D2D2D, #1A1A1A);
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: all 0.3s ease;
+}
+
+.actions > button:hover {
+  border-color: var(--secondary-darker-color);
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.26);
+}

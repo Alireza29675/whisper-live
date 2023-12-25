@@ -3,15 +3,15 @@ import useConfig from "@/hooks/useConfig"
 import styles from './style.module.css'
 
 export const metadata = {
-  title: 'Basic Usage',
-  route: 'basic',
+  title: 'Live Translation',
+  route: 'live-translation',
 }
 
 // 👋 Hi! Here is a basic usage of whisper-live:
 // ----
 
 // 0️⃣ Install and import the package
-import WhisperLive from "whisper-live"
+import WhisperLive, { Language } from "whisper-live"
 
 export default function Basic() {
   const { apiKey } = useConfig().config
@@ -20,7 +20,7 @@ export default function Basic() {
 
   const whisper = useMemo(() => {
     // 1️⃣ Instantiate the WhisperLive class
-    const whisper = new WhisperLive({ openAiKey: apiKey })
+    const whisper = new WhisperLive({ openAiKey: apiKey, language: Language.Japanese })
   
     // 2️⃣ Catch the transcriptions
     whisper.onTranscript((text) => setTranscription(text));
